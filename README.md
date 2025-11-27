@@ -18,7 +18,7 @@ Supports various file types including images, audio, video, documents (PDF, DOCX
 ## Prerequisites
 
 - Node.js version 18 or higher  
-- npm or yarn package manager  
+- npm  package manager  
 - A [Cloudinary](https://cloudinary.com/) account with API credentials  
 
 ---
@@ -69,5 +69,6 @@ apps/
 ```
 ## API Documentation
 ```bash 
-API Documentation
+http://localhost:3000/api
+
 ```
