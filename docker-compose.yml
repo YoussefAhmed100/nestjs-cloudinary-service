@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+
+  nest-dev:
+    container_name: nest-dev
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+    command: npm run start:dev
+
+
+  nest-prod:
+    container_name: nest-prod
+    build:
+      context: .
+      target: production
+    ports:
+      - "3001:3000"
+    environment:
+      NODE_ENV: production
+    command: node dist/main.js
+    depends_on:
+      - mongo
+
+
+  mongo:
+    image: mongo:7
+    container_name: mongo-db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
